@@ -2,19 +2,35 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import './Header.css';
 import logo from '../../assets/logo.svg';
+import Modal from 'react-modal';
 
 class Header extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            modalIsOpen: false
+        }
+    }
+    openModalHandler = () => {
+        this.setState({ modalIsOpen: true });
+    }
+    closeModalHandler = () => {
+        this.setState({ modalIsOpen: false });
+    }
     render() {
         return (
             <div>
-                <div className="header-container">
+                <header className="header-container">
                     <img src={logo} className="app-logo" alt="Movies App Logo" />
                     <div className="btn-login">
-                        <Button variant="contained" color="default">
+                        <Button variant="contained" color="default" onClick={this.openModalHandler}>
                             Login
                 </Button>
                     </div>
-                </div>
+                </header>
+                <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen}
+                    contentLabel="Login" onRequestClose={this.closeModalHandler}></Modal>
             </div>
         )
     }
