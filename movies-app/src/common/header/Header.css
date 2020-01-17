@@ -1,0 +1,8 @@
+.header-container {
+  background: black;
+  height: 32px;
+  padding: 8px 32px 8px 16px;
+}
+.btn-login {
+  float: right;
+}
