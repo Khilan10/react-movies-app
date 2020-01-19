@@ -16,12 +16,17 @@ const styles = theme => ({
         textAlign: 'center',
         background: '#ff9999',
         padding: '8px',
-        fontSize: '1rem'
+        fontSize: '1rem',
     },
     gridListUpcomingMovies: {
         flexWrap: 'nowrap',
         transform: 'translateZ(0)',
         width: '100%'
+    },
+    gridListReleasedMovies: {
+        width: '75%',
+        transform: 'translateZ(0)',
+        cursor: 'pointer'
     }
 });
 
@@ -37,11 +42,22 @@ class Home extends Component {
                 <GridList cols={5} className={classes.gridListUpcomingMovies}>
                     {moviesData.map(movies => (
                         <GridListTile key={movies.id}>
-                            <img src={movies.poster_url} alt={movies.title} />
+                            <img src={movies.poster_url} className="movies-poster" alt={movies.title} />
                             <GridListTileBar title={movies.title} />
                         </GridListTile>
                     ))}
                 </GridList>
+                <div className="left">
+                    <GridList cols={4} cellHeight={350} className={classes.gridListReleasedMovies}>
+                        {moviesData.map(movies => (
+                            <GridListTile key={movies.id} className="movies-poster-released" >
+                                <img src={movies.poster_url} alt={movies.title} />
+                                <GridListTileBar title={movies.title} subtitle={<span>Release Date: {new Date(movies.release_date).toDateString()}</span>}
+                                />
+                            </GridListTile>
+                        ))}
+                    </GridList>
+                </div>
             </div>
         )
     }

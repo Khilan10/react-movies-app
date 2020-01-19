@@ -15,3 +15,15 @@
 ::-webkit-scrollbar-thumb:hover {
   background: grey;
 }
+.movies-poster {
+  height: 100%;
+  width: auto;
+}
+.movies-poster-released {
+  margin: 15px;
+  width: auto;
+  height: 100%;
+}
+.left {
+  margin-left: 15px;
+}
