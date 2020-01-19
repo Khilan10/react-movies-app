@@ -17,3 +17,12 @@
     transform: scaleX(-1);
   }
 }
+
+.tab-margin {
+  margin-bottom: 20px;
+}
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
