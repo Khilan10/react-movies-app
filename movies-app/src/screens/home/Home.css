@@ -20,10 +20,36 @@
   width: auto;
 }
 .movies-poster-released {
-  margin: 15px;
+  margin: 8px;
+}
+.movie-poster {
   width: auto;
   height: 100%;
 }
 .left {
-  margin-left: 15px;
+  width: 76%;
+}
+.flex-container {
+  display: flex;
+}
+.flex-container > div {
+  margin: 16px;
+}
+.right {
+  padding-top: 20px;
+  width: 24%;
+}
+@media (max-width: 992px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+  }
+  .right {
+    width: 90%;
+  }
+  .released-movie-grid-item {
+    margin: 8px;
+  }
 }
