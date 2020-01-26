@@ -73,7 +73,6 @@ class Home extends Component {
         this.setState({ artists: e.target.value });
     }
     movieClickHandler = (movieId) => {
-        console.log("movie clicked:" + movieId);
         ReactDOM.render(<Details movieId={movieId} />, document.getElementById('root'));
     }
     render() {
