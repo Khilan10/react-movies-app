@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './Home.css';
 import Header from '../../common/header/Header'
 import { withStyles } from '@material-ui/core/styles';
@@ -20,6 +21,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Details from '../../screens/details/Details';
 
 
 const styles = theme => ({
@@ -70,6 +72,10 @@ class Home extends Component {
     artistSelectedHandler = (e) => {
         this.setState({ artists: e.target.value });
     }
+    movieClickHandler = (movieId) => {
+        console.log("movie clicked:" + movieId);
+        ReactDOM.render(<Details movieId={movieId} />, document.getElementById('root'));
+    }
     render() {
         const { classes } = this.props;
         return (
@@ -78,7 +84,7 @@ class Home extends Component {
                 <div className={classes.upcomingMoviesHeading}>
                     <span>Upcoming Movies</span>
                 </div>
-                <GridList cols={5} className={classes.gridListUpcomingMovies}>
+                <GridList cols={4} className={classes.gridListUpcomingMovies}>
                     {moviesData.map(movies => (
                         <GridListTile key={movies.id}>
                             <img src={movies.poster_url} className="movies-poster" alt={movies.title} />
@@ -90,7 +96,7 @@ class Home extends Component {
                     <div className="left">
                         <GridList cols={4} cellHeight={350} className={classes.gridListReleasedMovies}>
                             {moviesData.map(movies => (
-                                <GridListTile key={"grid:" + movies.id} className="movies-poster-released" >
+                                <GridListTile onClick={() => this.movieClickHandler(movies.id)} key={"grid:" + movies.id} className="movies-poster-released" >
                                     <img src={movies.poster_url} alt={movies.title} className="movie-poster" />
                                     <GridListTileBar title={movies.title} subtitle={<span>Release Date: {new Date(movies.release_date).toDateString()}</span>}
                                     />
