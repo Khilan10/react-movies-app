@@ -15,6 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Button } from '@material-ui/core';
 
 class BookShow extends Component {
     backToDetailsHandler() {
@@ -26,7 +27,9 @@ class BookShow extends Component {
             location: "",
             language: "",
             showDate: "",
-            showTime: ""
+            showTime: "",
+            tickets: 0,
+            unitPrice: 500
         }
     }
     locationChangeHandler = (event) => {
@@ -40,6 +43,9 @@ class BookShow extends Component {
     }
     showTimeChangeHandler = (event) => {
         this.setState({ showTime: event.target.value });
+    }
+    ticketChangeHandler = (event) => {
+        this.setState({ tickets: event.target.value });
     }
     render() {
         return (
@@ -111,6 +117,22 @@ class BookShow extends Component {
                             </Select>
                         </FormControl>
                         <br /><br />
+                        <FormControl className="formControl" required>
+                            <InputLabel htmlFor="tickets">Tickets:</InputLabel>
+                            <Input id="tickets" value={this.state.tickets !== 0 ? this.state.tickets : ""} onChange={this.ticketChangeHandler}></Input>
+                        </FormControl>
+                        <br /><br />
+                        <Typography>
+                            Unit Price Rs. {this.state.unitPrice}
+                        </Typography>
+                        <br />
+                        <Typography>
+                            Total Price Rs. {this.state.tickets * this.state.unitPrice}
+                        </Typography>
+                        <br /><br />
+                        <Button variant="contained" onClick={this.bookShowButtonHandler} color="primary">
+                            BOOK SHOW
+                        </Button>
                     </Card>
                 </div>
             </div>
