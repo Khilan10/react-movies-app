@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import './Header.css';
 import logo from '../../assets/logo.svg';
@@ -11,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import PropTypes from 'prop-types';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import BookShow from '../../screens/bookShow/BookShow';
 
 const customStyles = {
     content: {
@@ -136,6 +138,9 @@ class Header extends Component {
         this.state.regpassword === "" ? this.setState({ regpasswordRequired: "dispBlock" }) : this.setState({ regpasswordRequired: "dispNone" });
 
     }
+    bookShowHandler = () => {
+        ReactDOM.render(<BookShow />, document.getElementById('root'));
+    }
     render() {
         return (
             <div>
@@ -144,8 +149,11 @@ class Header extends Component {
                     <div className="btn-login">
                         <Button variant="contained" color="default" onClick={this.openModalHandler}>
                             Login
-                </Button>
+                        </Button>
                     </div>
+                    {this.props.showBookShowButton === 'true' ?
+                        <div className="btn-bookShow"><Button variant="contained" color="primary" onClick={this.bookShowHandler}>Book Show</Button></div> : ""
+                    }
                 </header>
                 <Modal ariaHideApp={false} isOpen={this.state.modalIsOpen}
                     contentLabel="Login" onRequestClose={this.closeModalHandler} style={customStyles}>
